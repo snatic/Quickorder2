@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QuickOrder</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="jquery.mobile-1.3.2.min.css" /> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+  <script src="jquery.mobile-1.3.2.min.js"></script>
+  <script>
+	/*$(document).bind('pageinit', function() {
+		$("#popupLogin").popup('close')
+    	$("#popupLogin").popup('open');
+	});
+  function validar(param, url){
+  	var un = $("#un").val(); 
+  	var pw = $("#pw").val();
+  	$.ajax({
+  		data: "dat=" + pw + "&pat=" + un,
+  		type: "GET",
+  		dataType: "html",
+  		url: "login.php",
+  		success: function(data){
+  			if (data==1) {
+  				//console.log(data);
+  				//alert("hola");
+  				$( "#popupLogin" ).popup( "close" );
+  			}else{
+  				$( "#popupLogin" ).popup( "open" );
+  			};
+  		}
+  	});
+
+  }
+  */
+ function popup(){
+ 	var priority = $("#priority").val();
+ 	if(priority==1) rgtxt = "Very High";
+ 	if(priority==2) rgtxt = "High";
+ 	if(priority==3) rgtxt = "Medium";
+ 	if(priority==4) rgtxt = "Low";
+ 	$( '#positionWindow' ).popup({ transition: "pop" });
+ 	$( '#positionWindow' ).html(rgtxt);
+ 	$("#positionWindow").popup("open", {transition: "flip"});
+ 	setTimeout( function(){ $( '#positionWindow' ).popup( 'close' ) }, 500 );
+ }
+  </script> 
+</head>
+<body>
+<!-- Pagina 1 -->
+	<div data-role="page" id="orden">
+		<div data-role="header"><h2>QuickOrder Crear Orden</h2><a href="">Save</a>
+ 		<div data-role="navbar" data-iconpos="bottom">
+        	<ul>
+            	<li><a href="#" data-icon="grid" data-theme="c" class="ui-btn-active ui-state-persist">Orden</a></li>
+            	<li><a href="#notifica" data-icon="star" data-theme="c">Notificar</a></li>
+            	<li><a href="#estatus" data-icon="gear" data-theme="c">Estatus</a></li>
+        	</ul>
+    	</div><!-- /navbar -->
+		</div>
+		<!--Popup-->
+		<div data-role="popup" id="popupLogin" data-overlay-theme="a" data-theme="a" class="ui-corner-all" data-dismissible="false">
+			    <form>
+			        <div style="padding:10px 20px;">
+			            <h3>Please sign in</h3>
+			            <label for="un" class="ui-hidden-accessible">Username:</label>
+			            <input type="text" name="user" id="un" value="" placeholder="username" data-theme="a">
+			            <label for="pw" class="ui-hidden-accessible">Password:</label>
+			            <input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a">
+			            <button type="button" onclick="validar();" data-theme="b" data-icon="check">Sign in</button>
+			        </div>
+			    </form>
+			</div>
+		<div data-role="content">
+			<form action="">
+				<label for="Otype">Order Type</label>
+				<select name="Otype" id="" data-native-menu="false">
+					<option value="PM01">Select Value</option>
+					<option value="PM02">Maintenance Order</option>
+					<option value="PM03">Maintenance Order</option>
+					<option value="PM04">Maintenance Order/notification</option>
+					<option value="PM05">Refurbishment order</option>
+					<option value="PM06">Calibration Order</option>
+				</select>
+				<label for="Priority">Priority</label>
+				<div data-role="popup" id="positionWindow" data-position-to="#priority" class="ui-content">
+					<p>I am positioned to the window.</p>
+				</div>
+				<input type="range" id="priority" min="1" max="4" data-theme="a" onchange="popup();" data-track-theme="b">
+				<label for="Floc">Func. Location</label>
+				<input type="text">
+				<label for="Equip">Equipment</label>
+				<input type="text">
+				<label for="Plant">Plant</label>
+				<input type="text">
+				<label for="Plant">Description</label>
+				<textarea name="description" id="" cols="30" rows="10"></textarea>
+			</form>
+
+		</div>
+		<div data-role="footer" data-position="fixed"><h2>Dobresoft</h2></div>
+	</div>
+<!-- Pagina Notificacion -->
+	<div data-role="page" id="notifica">
+		<div data-role="header"><h2>QuickOrder Notificaciones</h2>
+ 		<div data-role="navbar" data-iconpos="bottom">
+        	<ul>
+            	<li><a href="#orden" data-icon="grid" data-theme="c">Orden</a></li>
+            	<li><a href="#" data-icon="star" class="ui-btn-active ui-state-persist" data-theme="c">Notificar</a></li>
+            	<li><a href="#estatus" data-icon="gear" data-theme="c">Estatus</a></li>
+        	</ul>
+    	</div><!-- /navbar -->
+		</div>
+		<div data-role="content"></div>
+		<div data-role="footer" data-position="fixed"><h2>Dobresoft</h2></div>
+	</div>
+	<!-- Pagina Estatus -->
+	<div data-role="page" id="estatus">
+		<div data-role="header"><h2>QuickOrder Estatus</h2>
+ 		<div data-role="navbar" data-iconpos="bottom">
+        	<ul>
+            	<li><a href="#orden" data-icon="grid" data-theme="c">Orden</a></li>
+            	<li><a href="#notifica" data-icon="star" data-theme="c">Notificar</a></li>
+            	<li><a href="#" data-icon="gear" class="ui-btn-active ui-state-persist" data-theme="c">Estatus</a></li>
+        	</ul>
+    	</div><!-- /navbar -->
+		</div>
+		<div data-role="content"></div>
+		<div data-role="footer" data-position="fixed"><h2>Dobresoft</h2></div>
+	</div>
+<!-- Login Pagina-->
+
+</body>
+</html>
